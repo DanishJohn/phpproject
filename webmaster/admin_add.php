@@ -111,7 +111,7 @@ if (!isset($_SESSION['registered_admin'])) {
                                         </select></td>
                                 </tr>
                                 <tr><td>Product's description</td>
-                                    <td><textarea rows='4' cols='50' name='addDes'></textarea>
+                                    <td><textarea rows='4' cols='50' pattern='[a-zA-Z0-9 ]{,1000}' name='addDes'></textarea>
                                 </tr>
                                 <tr>
                                     <td>Product's Material:</td>

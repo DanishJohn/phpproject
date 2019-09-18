@@ -67,7 +67,7 @@ include_once '../connect.inc';
                 <center><h3>From beyond the valley we bring you our top quality leathers</h3></center> <br>
                 <div class="row">
                     <?php
-                    $getSixProducts = "select * from products where prod_id <= (select max(prod_id) from products) and prod_id > (select max(prod_id) from products) - 3";
+                    $getSixProducts = "select * from products order by prod_id desc limit 3 offset 0";
                     $resprod = mysqli_query($link, $getSixProducts);
                     while ($row = mysqli_fetch_row($resprod)) {
                         ?>
@@ -76,7 +76,7 @@ include_once '../connect.inc';
                                 <img src="../img/<?php echo $row[4] ?>" class="img-responsive" alt="Image">
                             </div>
                             <div class="caption">
-                                <h4 class="list-group-item-heading"><a href=""><?php echo "$row[1]" ?></a>
+                                <h4 class="list-group-item-heading"><a href="product_detail.php?product_id=<?php echo "$row[0]" ?>"><?php echo "$row[1]" ?></a>
                                 </h4>                                
                                 <h5 class="list-group-item-text"><b>In stock: <?php echo $row[8] ?>   </b><b>User rating: <b>
                                             <?php

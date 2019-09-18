@@ -74,16 +74,15 @@ if (isset($_GET['submitOrder'])) {
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="Main.php"><span class="glyphicon glyphicon-home"></span><b> Home</b></a>
                     </li>
-                    <li><a href="producMain.html"><b>Products</b></a></li>
+                    <li><a href="product.php"><b>Products</b></a></li>
                     <li><a href="contact.php"><b>Contact</b></a></li>
-                    <li><a href="aboutus.php"><b>About us</b></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <?php
                     if (isset($_SESSION['username'])) {
                         $name = $_SESSION['username'];
                         echo '<li style = "margin-right:50px;"><a href = "shopping_cart.php"><span class = "fa fa-cart-plus"</a></li>';
-                        echo "<li><a href=''><span class='glyphicon glyphicon-user'></span> $name</a></li> ";
+                        echo "<li><a href='customer_info.php'><span class='glyphicon glyphicon-user'></span> $name</a></li> ";
                         echo "<li><a href='../webvisitor/user_logout.php'><span class='glyphicon glyphicon-off'></span> Log out</a></li>";
                     } else {
                         echo '<li><a href="../webvisitor/TestRegister.php"><span class="glyphicon glyphicon-user"></span> Sign up</a></li>';

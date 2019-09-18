@@ -2,16 +2,20 @@
 session_start();
 include_once '../connect.inc';
 if (isset($_POST['feedbackSub'])) {
+    $username = isset($_POST['username'])? "'".$_POST['username']."'":"NULL";
     $email = $_POST['email'];
-    $content = $_POST['content'];
+    $content = $_POST['feedbackContent'];
     $telephone = $_POST['telephone'];
-    $insertFeedback = "insert into feedback(feedback_id,email,telephone,feedback_details) values(NULL,'$email','$telephone','$content'";
+    $insertFeedback = "insert into feedback(feedback_id,customer_username,email,telephone,feedback_details) values(NULL,$username,'$email','$telephone','$content')";
     if (mysqli_query($link, $insertFeedback)) {
         ?>
         <script>
             alert("We have received your feedback.");
         </script>
         <?php
+    }
+    else {
+        echo "<script>alert(\"unable to send feedback\");</script>";
     }
 }
 ?>
@@ -82,7 +86,7 @@ if (isset($_POST['feedbackSub'])) {
                                     ?>
                                     <div class='form-group'>
                                         <label>Username:</label>
-                                        <input readonly class='form-control' value='<?php echo "" . $_SESSION['username']; ?>'>
+                                        <input readonly class='form-control' name='username' value='<?php echo "" . $_SESSION['username']; ?>'>
                                     </div>
                                     <div class="form-group">
                                         <label for="">E-mail*</label>
@@ -101,7 +105,7 @@ if (isset($_POST['feedbackSub'])) {
                                     </div>
                                     <div class='form-group'>
                                         <label>Telephone number:</label>
-                                        <input type="text" name='telephone' class='form-control' pattern='[0-9]{9}' required>
+                                        <input type="text" name='telephone' class='form-control' pattern='[0-9]{9,}'>
                                     </div>
                                 <?php } ?>
                                 <div class="form-group">

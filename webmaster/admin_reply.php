@@ -18,7 +18,7 @@ if (isset($_POST['btnSub'])) {
     $repDetails = $_POST['reply-details'];
     $repDate = $_POST['reply-date'];
     $email = $_GET['email'];
-    $updateReply = "update feedback set reply_detail = '$repDetails', admin_id_reply = '$adminid', reply_date = '$repDate' where feedback_id = $feedbackid";
+    $updateReply = "update feedback set reply_detail = '$repDetails', admin_id_reply = '$adminid', reply_date = '$repDate', reply_status = 'replied' where feedback_id = $feedbackid";
     if (mysqli_query($link, $updateReply)) {
         $mail = new PHPMailer();
         $mail->isSMTP();

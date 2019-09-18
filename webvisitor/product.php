@@ -113,7 +113,7 @@ session_start();
         <nav class="navbar navbar-static-top top-nav">
             <div class="container">
                 <div class="navbar-header">
-                    <a href="Main.php" class="navbar-brand" style="text-shadow: 2px 2px 2px;">BagBagOnlineShop</a>
+                    <a href="Main.php" class="navbar-brand" style="text-shadow: 2px 2px 2px;">Haven's Bag Shop</a>
                 </div>
                 <ul class="nav navbar-nav">
                     <li><a href="Main.php"><span class="glyphicon glyphicon-home"></span><b> Home</b></a></li>

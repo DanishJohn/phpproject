@@ -50,6 +50,7 @@
         session_start();
         require_once '../database/databaseConnect.php';
         require_once '../Constants/constants.php';
+        require_once '../connect.inc';
         if (!isset($_SESSION['username'])) {
             header('location: Main.php');
         }
@@ -82,7 +83,6 @@
                         echo "<li><a href='customer_info.php'><span class='glyphicon glyphicon-user'></span> $name</a></li> ";
                         echo "<li><a href='../webvisitor/user_logout.php'><span class='glyphicon glyphicon-off'></span> Log out</a></li>";
                     } else {
-                        echo "<li style = 'margin-right:50px;'><a href = 'shopping_cart.php'><span class = 'fa fa-cart-plus'> <span class='badge' id='cart'></span></span></a></li>";
                         echo '<li><a href="../webvisitor/TestRegister.php"><span class="glyphicon glyphicon-user"></span> Sign up</a></li>';
                         echo '<li><a href="../webvisitor/TestLogin.php"><span class="glyphicon glyphicon-log-in"></span> Sign in</a></li>';
                     }
@@ -94,63 +94,35 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="list-group">
-                        <a href="customer_info.php" class="list-group-item list-group-item-action active">My Profile</a>
-                        <a href="user_profile_cart.php" class="list-group-item list-group-item-action">My Orders</a>
+                        <a href="customer_info.php" class="list-group-item list-group-item-action">My Profile</a>
+                        <a href="user_profile_cart.php" class="list-group-item list-group-item-action active">My Orders</a>
                         <a href="user_profile_review.php" class="list-group-item list-group-item-action">My Reviews</a>
                         <a href="user_profile_feedback.php" class="list-group-item list-group-item-action">My Feedback</a>
                     </div>
                 </div>
                 <div class="col-sm-8">
-                    <form role="form" id="form-register" style="margin: 0; width: auto;">
-                        <h2 class="form-heading" style="margin-bottom:15px;">My Profile</h2>
-                        <div class="form-group">
-                            <div class="col-sm-3 label-customer">FullName</div>
-                            <div class="col-sm-9">
-                                <?= $getCustomer_Result[0]["customer_name"] ?>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-3 label-customer">Email</div>
-                            <div class="col-sm-9">
-                                <?= $getCustomer_Result[0]["customer_email"] ?>
-                            </div>
-                        </div>
+                    <table class="table table-sm table-responsive">
+                        <thead>
+                        <th>Order date</th>
+                        <th>Order Status</th>
+                        <th>Items in order</th>
+                        <th>Order details</th>
+                        
+                        </thead>
+                        <?php
+                        $username = $_SESSION['username'];
+                        $getMyOrder = "select a.created_date,a.order_status, sum(b.quantity) from customer_order a, order_item b where a.order_id = b.order_id and a.customer_username ='$username'  group by a.order_id";
+                        $executeMyOrder = mysqli_query($link, $getMyOrder);
+                        while ($myorderrow = mysqli_fetch_row($executeMyOrder)) {
+                            ?>
+                        <tr>
+                            <td><?php echo "$myorderrow[0]" ?></td>
+                            <td><?php echo "$myorderrow[1]" ?></td>
+                            <td><?php echo "$myorderrow[2]" ?></td>
+                        </tr>
 
-                        <div class="form-group">
-                            <div class="col-sm-3 label-customer">Date of Birth</div>
-                            <div class="col-sm-9" style="height: 20px">
-                                <?= $getCustomer_Result[0]["customer_dob"] ?>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-3 label-customer">Phone Number</div>
-                            <div class="col-sm-9">
-                                <?= $getCustomer_Result[0]["customer_mobile"] ?>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-3 label-customer">Gender</div>
-                            <div class="col-sm-9">
-                                <?php
-                                if (is_null($getCustomer_Result[0]["customer_gender"]) == true) {
-                                    echo "";
-                                } else if ($getCustomer_Result[0]["customer_gender"] == 0) {
-                                    echo "Male";
-                                } else if ($getCustomer_Result[0]["customer_gender"] == 1) {
-                                    echo "Female";
-                                }
-                                ?>
-                            </div>
-                        </div> 
-                        <input type="button" onclick="location.href = 'customer_edit.php';" value="Edit Profile" class="btn btn-primary btn-block " />
-                        <input type="button" onclick="location.href = 'customer_changepass.php';" value="Change Password" class="btn btn-primary btn-block " />
-                    </form> 
-<?php
-if (isset($_SESSION[Constants::$STATUS_SUCCESS_CHANGEPASSWORD])) {
-    echo "<script>alert('Change password success!')</script>";
-    unset($_SESSION[Constants::$STATUS_SUCCESS_CHANGEPASSWORD]);
-}
-?>
+                        <?php } ?>
+                    </table>
                 </div>
 
             </div>
