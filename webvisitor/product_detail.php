@@ -316,7 +316,6 @@
                 <li><a href="Main.php"><span class="glyphicon glyphicon-home"></span><b> Home</b></a></li>
                 <li><a href="product.php"><b>Products</b></a></li>
                 <li><a href="contact.php"><b>Contact</b></a></li>
-                <li><a href="aboutus.php"><b>About us</b></a></li>
             </ul>
             <?php 
                 if(isset($_SESSION['username'])){

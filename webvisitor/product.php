@@ -119,7 +119,6 @@ session_start();
                     <li><a href="Main.php"><span class="glyphicon glyphicon-home"></span><b> Home</b></a></li>
                     <li><a href="product.php?category=all&sort=1"><b>Products</b></a></li>
                     <li><a href="contact.php"><b>Contact</b></a></li>
-                    <li><a href="aboutus.php"><b>About us</b></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <?php
@@ -129,7 +128,6 @@ session_start();
                         echo "<li><a href='customer_info.php'><span class='glyphicon glyphicon-user'></span> $name</a></li> ";
                         echo "<li><a href='../webvisitor/user_logout.php'><span class='glyphicon glyphicon-off'></span> Log out</a></li>";
                     } else {
-                        echo "<li style = 'margin-right:50px;'><a href = 'shopping_cart.php'><span class = 'fa fa-cart-plus'> <span class='badge' id='cart'></span></span></a></li>";
                         echo '<li><a href="../webvisitor/TestRegister.php"><span class="glyphicon glyphicon-user"></span> Sign up</a></li>';
                         echo '<li><a href="../webvisitor/TestLogin.php"><span class="glyphicon glyphicon-log-in"></span> Sign in</a></li>';
                     }

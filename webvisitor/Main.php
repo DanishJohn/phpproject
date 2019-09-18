@@ -31,7 +31,6 @@ include_once '../connect.inc';
                     </li>
                     <li><a href="product.php"><b>Products</b></a></li>
                     <li><a href="contact.php"><b>Contact</b></a></li>
-                    <li><a href="aboutus.php"><b>About us</b></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <?php

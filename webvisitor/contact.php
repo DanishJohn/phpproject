@@ -40,7 +40,6 @@ if (isset($_POST['feedbackSub'])) {
                     <li><a href="Main.php"><span class="glyphicon glyphicon-home"></span><b> Home</b></a></li>
                     <li><a href="product.php"><b>Products</b></a></li>
                     <li class="active"><a href="contact.php"><b>Contact</b></a></li>
-                    <li><a href="aboutus.php"><b>About us</b></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <?php
